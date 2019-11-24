@@ -11,6 +11,7 @@ from scipy.sparse import lil_matrix
 
 from sklearn.utils.multiclass import type_of_target
 
+from sklearn.utils._testing import assert_allclose
 from sklearn.utils._testing import assert_array_equal
 from sklearn.utils._testing import assert_warns_message
 from sklearn.utils._testing import ignore_warnings
@@ -662,10 +663,10 @@ def test_multilabel_histogram():
     y = [{1: 5.5, 2: -3.0}, {3: 999}]
     Y = np.array([[  5.5  -3.    0. ],
                   [  0.    0.  999. ]])
-    assert_array_equal(mlh.fit_transform(y), Y)
+    assert_allclose(mlh.fit_transform(y), Y)
 
     mlh = MultiLabelHistogram()
     y = [{'sci-fi': -2.0, 'thriller': 5.0}, {'comedy': 0.1}]
     Y = np.array([[ 0.  -2.   5. ],
                   [ 0.1  0.   0. ]])
-    assert_array_equal(mlh.fit_transform(y), Y)
+    assert_allclose(mlh.fit_transform(y), Y)
